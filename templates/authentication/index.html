@@ -9,7 +9,15 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
+
+    {% for message in messages %}
+    div class="alert alert
     <h3>Welcome to Geeks for Geeks</h3>
+
+    {% if user.is_authenticated %}
+    <h3>Hello  {{fname}}</h3>
+    <h4>You're successfully  loggeed in.</h4>
+
     <button type="submit"><a href="/signup">SignUp</a></button>
     <button type="submit"><a href="/signin">SignIn</a></button>
     <button type="submit"><a href="/signout">SignOut</a></button>
