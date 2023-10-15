@@ -47,12 +47,12 @@ def signup(request):
 
         myuser.save()
 
-        messages.success(request, "Your account has been successfully created")
+        messages.success(request, "Your account has been successfully created. We have sent you a confirmation email, please confirm your email in order to activate your account.")
 
         # Welcome Email
 
         subject = "Welcome to GFG - Django login!!"
-        message = f"Hello {User.first_name}!! \n  + Welcome to GFG \n Thank you for visiting our website \n We have also sent you a confirmation email, Please confirm your email address in other to verify your account. \n \n Thanking you \n Adegoke Adams"
+        message = f"Hello {User.first_name}!! \n Welcome to GFG \n Thank you for visiting our website \n We have also sent you a confirmation email, Please confirm your email address in other to verify your account. \n \n Thanking you \n Adegoke Adams"
         from_email = settings.EMAIL_HOST_USER
         to_list = [myuser.email]
         send_mail(subject, message, from_email, to_list, fail_silently=True)
