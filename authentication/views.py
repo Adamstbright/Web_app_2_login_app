@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
+from auth_app import settings
+from django.core.mail import send_mail
 
 
 def home(request):
@@ -46,6 +48,15 @@ def signup(request):
         myuser.save()
 
         messages.success(request, "Your account has been successfully created")
+
+        # Welcome Email
+
+        subject = "Welcome to GFG - Django login!!"
+        message = f"Hello {User.first_name}!! \n  + Welcome to GFG \n Thank you for visiting our website \n We have also sent you a confirmation email, Please confirm your email address in other to verify your account. \n \n Thanking you \n Adegoke Adams"
+        from_email = settings.EMAIL_HOST_USER
+        to_list = [myuser.email]
+        send_mail(subject, message, from_email, to_list, fail_silently=True)
+
 
         return redirect('signin')
 
